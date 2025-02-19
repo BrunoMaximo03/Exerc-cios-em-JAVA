@@ -22,11 +22,11 @@ public class Exercicio4 {
 
         System.out.println("Digite suas strings ou 'fim' para encerrar o programa.\n");
 
-        while(!texto.equalsIgnoreCase("fim")) {
+        while(!(texto.length() == 3 && texto.charAt(0) == 'f' && texto.charAt(1) == 'i' && texto.charAt(2) == 'm')) {
             System.out.print("Entrada: ");
             texto = entradaDeDados.nextLine();
             
-            if (!texto.equalsIgnoreCase("fim")) {
+            if (!(texto.length() == 3 && texto.charAt(0) == 'f' && texto.charAt(1) == 'i' && texto.charAt(2) == 'm')) {
                 String resultado = voltaStringModificada(texto, letra1, letra2);
                 System.out.println("String modificada: " + resultado + "\n");
             }
@@ -34,14 +34,21 @@ public class Exercicio4 {
     }
     
     public static String voltaStringModificada(String texto, char letra1, char letra2) {
-        StringBuilder string = new StringBuilder();
 
+        Random random = new Random();
+        String novaString = "";
+    
         for (int i = 0; i < texto.length(); i++) {
-            if (texto.charAt(i) != letra1 && texto.charAt(i) != letra2) {
-                string.append(texto.charAt(i));  // Adiciona o caractere que não foi sorteado
+            char c = texto.charAt(i);
+            if (c == letra1 || c == letra2) {
+                char novaLetra = (char) (random.nextInt(26) + 'A'); // Nova letra aleatória a cada substituição
+                novaString += novaLetra; // Adiciona a nova letra
+            } else {
+                novaString += c; // Mantém o caractere original
             }
         }
-
-        return string.toString();  // Retorna a string modificada
+    
+        return novaString;
     }
+    
 }
