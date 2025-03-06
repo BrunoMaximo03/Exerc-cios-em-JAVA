@@ -1,40 +1,29 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class Exercicio3 {
+class Exercicio3 {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-
-        System.out.println("Informe a string a ser CIFRADA!");
-
-        while(true) {
-            String str = entrada.nextLine();
-        
-            if(str.equalsIgnoreCase("sair")) {
-                System.out.println("Encerrando o programa!");
-                break;
-            }
-
-            System.out.println("String cifrada: " + retornaCifrada(str));
+        Scanner scanner = new Scanner(System.in);
+        String string;
+        while(scanner.hasNext()){
+            string = scanner.nextLine();
+            System.out.println(ciframento(string));
         }
+        scanner.close();
     }
-
-    public static String retornaCifrada(String string) {
-        StringBuilder cifrada = new StringBuilder();
-
-        for (char c : string.toCharArray()) {
-            if (Character.isLetter(c)) {
-
-                char deslocado = (char) (c + 3);  // Cifra as letras, considerando maiúsculas e minúsculas
-                
-                if ((Character.isLowerCase(c) && deslocado > 'z') || (Character.isUpperCase(c) && deslocado > 'Z')) {
-                    deslocado -= 26; // Volta para o início do alfabeto se ultrapassar 'z' ou 'Z'
-                }
-                cifrada.append(deslocado);
-            } else {
-                cifrada.append(c); // Não cifra caracteres não alfabéticos
+    private static String ciframento(String string){
+        StringBuilder novaString = new StringBuilder();
+        char carac;
+        char novoCarac;
+        for(int i = 0; i < string.length(); i++){
+            carac= string.charAt(i);
+            if(carac < 1 || carac > 127){
+                novaString.append(carac);
+            }
+            else{
+                novoCarac = (char) (carac + 3);
+                novaString.append(novoCarac);
             }
         }
-
-        return cifrada.toString();
+        return novaString.toString();
     }
 }

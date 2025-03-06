@@ -4,31 +4,25 @@ public class Exercicio7 {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         String texto;
-
-        System.out.println("Informe a string para ser invertida (ou 'sair' para encerrar):");
+        boolean condicao = true;
+        //System.out.println("Informe a string para ser invertida (ou 'sair' para encerrar):");
         
-        while (true) {
+        while (condicao) {
             texto = entrada.nextLine();
             
-            if (texto.equalsIgnoreCase("sair")) {
-                System.out.println("Programa encerrado.");
-                break;
+            if (texto.length() == 3 && texto.charAt(0) == 'F' && texto.charAt(1) == 'I' && texto.charAt(2) == 'M') {
+                condicao = false;
+            } else {
+                System.out.println(transformaString(texto));
             }
 
-            String textoInvertido = transformaString(texto);
-            if (textoInvertido != null) {
-                System.out.println("String invertida: " + textoInvertido);
-            }
         }
 
         entrada.close();
     }
 
     public static String transformaString(String texto) {
-        if (texto.isEmpty()) {
-            System.out.println("Tamanho de string inválido!\n");
-            return null;
-        }
+       
 
         int begin = 0, end = texto.length() - 1;
         char[] array = texto.toCharArray();

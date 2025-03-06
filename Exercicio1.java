@@ -5,19 +5,19 @@ public class Exercicio1 {
 
         Scanner entrada = new Scanner(System.in); //criado o obj da classe Scanner(scanf)
 
-        System.out.println("Digite uma string para ver se é PALÍNDROMO:");
+        //System.out.println("Digite uma string para ver se é PALÍNDROMO:");
 
         while(entrada.hasNextLine()) {
             String linha = entrada.nextLine(); //criado o objeto da classe String para receber o que foi digitado
 
-            if(linha.equalsIgnoreCase("sair")) { // se o usuario digitar sair, encerra o programa 
+            if(linha.length() == 3 && linha.charAt(0) == 'F' && linha.charAt(1) == 'I' && linha.charAt(2) == 'M') { // se o usuario digitar sair, encerra o programa 
                 System.out.println("Encerrando o programa.");
                 break;
             }
             if (ehPalindromo(linha)) {
-                System.out.println("A string digitada é um palíndromo!");
+                System.out.println("SIM");
             } else {
-                System.out.println("A string digitada NÃO é um palíndromo.");
+                System.out.println("NAO");
             }
         }
         entrada.close();
